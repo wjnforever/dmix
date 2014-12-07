@@ -20,8 +20,9 @@ import org.a0z.mpd.event.StatusChangeListener;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 
-public class SettingsActivity extends Activity implements StatusChangeListener {
+public class SettingsActivity extends ActionBarActivity implements StatusChangeListener {
 
     private final MPDApplication mApp = MPDApplication.getInstance();
 
@@ -40,6 +41,7 @@ public class SettingsActivity extends Activity implements StatusChangeListener {
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.settings);
         mSettingsFragment = new SettingsFragment();
         mApp.oMPDAsyncHelper.addStatusChangeListener(this);
         getFragmentManager().beginTransaction()

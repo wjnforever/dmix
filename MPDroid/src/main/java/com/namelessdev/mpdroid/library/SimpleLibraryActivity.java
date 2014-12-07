@@ -16,7 +16,7 @@
 
 package com.namelessdev.mpdroid.library;
 
-import com.namelessdev.mpdroid.MPDroidActivities.MPDroidFragmentActivity;
+import com.namelessdev.mpdroid.MPDroidActivities;
 import com.namelessdev.mpdroid.R;
 import com.namelessdev.mpdroid.fragments.AlbumsFragment;
 import com.namelessdev.mpdroid.fragments.AlbumsGridFragment;
@@ -30,7 +30,6 @@ import com.namelessdev.mpdroid.helpers.MPDControl;
 import org.a0z.mpd.item.Album;
 import org.a0z.mpd.item.Artist;
 
-import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -41,12 +40,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentManager.OnBackStackChangedListener;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-public class SimpleLibraryActivity extends MPDroidFragmentActivity implements
+public class SimpleLibraryActivity extends MPDroidActivities.MPDroidActivity implements
         ILibraryFragmentActivity, OnBackStackChangedListener {
 
     private static final String EXTRA_ALBUM = "album";
@@ -117,7 +117,7 @@ public class SimpleLibraryActivity extends MPDroidFragmentActivity implements
         mTitleView.setSelected(true);
         mTitleView.requestFocus();
 
-        final ActionBar actionBar = getActionBar();
+        final ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setCustomView(mTitleView);
             actionBar.setDisplayShowTitleEnabled(false);
