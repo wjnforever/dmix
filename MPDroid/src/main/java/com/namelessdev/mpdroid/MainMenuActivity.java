@@ -16,7 +16,6 @@
 
 package com.namelessdev.mpdroid;
 
-import com.namelessdev.mpdroid.MPDroidActivities.MPDroidFragmentActivity;
 import com.namelessdev.mpdroid.fragments.BrowseFragment;
 import com.namelessdev.mpdroid.fragments.LibraryFragment;
 import com.namelessdev.mpdroid.fragments.OutputsFragment;
@@ -28,8 +27,6 @@ import com.namelessdev.mpdroid.library.ILibraryTabActivity;
 import com.namelessdev.mpdroid.tools.LibraryTabsUtil;
 import com.namelessdev.mpdroid.tools.Tools;
 
-import android.app.ActionBar;
-import android.app.ActionBar.OnNavigationListener;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -46,6 +43,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentManager.OnBackStackChangedListener;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -61,7 +59,8 @@ import android.widget.TextView;
 import java.util.Collections;
 import java.util.List;
 
-public class MainMenuActivity extends MPDroidFragmentActivity implements OnNavigationListener,
+public class MainMenuActivity extends MPDroidActivities.MPDroidActivity implements
+        ActionBar.OnNavigationListener,
         ILibraryFragmentActivity, ILibraryTabActivity, OnBackStackChangedListener,
         PopupMenu.OnMenuItemClickListener {
 
@@ -144,7 +143,7 @@ public class MainMenuActivity extends MPDroidFragmentActivity implements OnNavig
     private ActionBarDrawerToggle initializeDrawerToggle() {
 
         // Set up the action bar.
-        final ActionBar actionBar = getActionBar();
+        final ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
         actionBar.setCustomView(mTextView);
@@ -456,7 +455,7 @@ public class MainMenuActivity extends MPDroidFragmentActivity implements OnNavig
 
     @Override
     public void pageChanged(final int position) {
-        final ActionBar actionBar = getActionBar();
+        final ActionBar actionBar = getSupportActionBar();
         if (mCurrentDisplayMode == DisplayMode.MODE_LIBRARY
                 && actionBar.getNavigationMode() == ActionBar.NAVIGATION_MODE_LIST) {
             actionBar.setSelectedNavigationItem(position);
@@ -484,7 +483,7 @@ public class MainMenuActivity extends MPDroidFragmentActivity implements OnNavig
      */
 
     private void refreshActionBarTitle() {
-        final ActionBar actionBar = getActionBar();
+        final ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowCustomEnabled(true);
 
         if (mCurrentDisplayMode == DisplayMode.MODE_OUTPUTS) {
